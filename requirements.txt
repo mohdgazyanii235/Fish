@@ -1,6 +1,7 @@
 asgiref==3.3.2
 Django==3.2
-mysqlclient==1.4.6
+mysqlclient @ file:///C:/Users/moham/PycharmProjects/Fish/mysqlclient-1.4.6-cp37-cp37m-win32.whl
+psycopg2==2.8.6
 pytz==2021.1
 sqlparse==0.4.1
 typing-extensions==3.7.4.3
