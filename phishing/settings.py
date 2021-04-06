@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '!(kap$39!*xg#qn=$@8)w4edxib)l6c^3+k7@o5&z(cd37oq^j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", "192.168.0.184", "127.0.0.1", "rhulconnect.herokuapp.com"]
 
