@@ -75,12 +75,12 @@ WSGI_APPLICATION = 'phishing.wsgi.application'
 
 DATABASES = {
     'default' : {
-        'ENGINE' : 'django.db.backends.postgresql',
-        'NAME' : 'postgres',
-        'USER' : 'postgres',
-        'PASSWORD' : 'root',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db0sfgqufp8esb',
+        'USER': 'jliqgjzusghrqm',
+        'PASSWORD': '08af81716c3c1b6b2d2ec2d6755be49b6ce336bb5b0d5524ef1423ef30a62455',
+        'HOST': 'ec2-3-211-37-117.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -123,5 +123,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
